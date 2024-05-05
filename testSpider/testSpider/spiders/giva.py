@@ -2,7 +2,7 @@ import scrapy
 
 
 class TestSpider(scrapy.Spider):
-    name = "test"
+    name = "giva"
     allowed_domains = ["www.giva.co"]
     start_urls = ["https://www.giva.co/collections/rings","https://www.giva.co/collections/pendants"]
 
@@ -15,4 +15,4 @@ class TestSpider(scrapy.Spider):
             }
         next_page_link = response.css('li.next a::attr(href)').extract_first()
         if next_page_link:
-            yield response.follow(next_page_link, callback=self.response_parser)
+            yield response.follow(next_page_link, callback=self.parse)
